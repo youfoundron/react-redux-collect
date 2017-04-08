@@ -1,0 +1,9 @@
+{
+  "name": "react-redux-collect",
+  "version": "0.0.0",
+  "description": "Helpful redux function for connecting redux state and actions to React components.",
+  "main": "lib/index.js",
+  "repository": "https://github.com/rongierlach/react-redux-collect.git",
+  "author": "Ron Gierlach <rongierlach@gmail.com>",
+  "license": "MIT"
+}
