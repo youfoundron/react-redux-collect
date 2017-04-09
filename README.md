@@ -9,9 +9,25 @@ This function implements the same core functionality as react-redux-connect-help
 
 Collect some values in state and connect them as props. :+1:
 
-## Usage
+## Installation
+`$ npm install react-redux-connect-helpers`
 
-Where the shape of `state` and `actionCreators` look like this:
+## Usage
+```javascript
+import collect from 'react-redux-collect'
+
+const provideProps = collect(<path>, <name>, <transformer>)
+```  
+
+The arguments to connect a value in state are ordered as follows:
+* `path`: An array or string denoting the key(s) to access the value in state.
+* `name` (optional): The key of the resulting prop, defaults to.
+ the last key in `path`.
+* `transformer` (optional): Function to transform the accessed value or action.  
+For values, will pass the value as the first param and state as the second.  
+For actions, will pass the action as the first param and props as the second.
+
+For example, where `state` and `actionCreators` look like this:
 ```javascript
 const state = {
   id: 'SST-130',
@@ -65,7 +81,7 @@ const provideProps = collect([
   // access tracks, pass through selector, connect as 'numTracks' prop
   ['tracks', 'numTracks', (tracks, state) => tracks.length],
   // access openPlayer action, connect as 'openPlayer' prop
-  [['actions', 'openPlayer']],
+  ['actions', 'openPlayer'],
   // access playAlbum action, transform the result, connect as 'onClick' prop
   [['actions', 'playAlbum'], 'onClick', (playAlbum, props) => playAlbum.bind(props.id)]
 ])
