@@ -5,7 +5,9 @@ Chiefly, the resulting nested mess of connectors after composition:
 ![screen shot 2017-04-08 at 3 01 55 pm](https://cloud.githubusercontent.com/assets/4658359/24832048/0342a57a-1c6d-11e7-8462-aab689054e54.png)  
 *screenshot from [React Developer Tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en)*
 
-This function implements the same core functionality as react-redux-connect-helper's `connectStateValue`, but by buildling up `mapStateToProps` and `mapDispatchToProps` arguments to be passed to a _single_ [`connect`](https://github.com/reactjs/react-redux/blob/master/docs/api.md#connectmapstatetoprops-mapdispatchtoprops-mergeprops-options) call.
+This function implements the same core functionality as react-redux-connect-helper's `connectStateValue`, but by building up `mapStateToProps` and `mapDispatchToProps` arguments to be passed to a _single_ [`connect`](https://github.com/reactjs/react-redux/blob/master/docs/api.md#connectmapstatetoprops-mapdispatchtoprops-mergeprops-options) call.  
+
+Collect some values in state and connect them as props. :+1:
 
 ## Usage
 
@@ -93,4 +95,37 @@ const provideProps = connect(
   mapStateToProps,
   mapDispatchToProps
 )
+```
+
+## Immutable
+If your state uses <a href="https://facebook.github.io/immutable-js/">Immutable.js</a>, import with `react-redux-collect/immutable`.
+
+## Tricks
+
+You can spread a state value into props using the string `'...'`.
+```javascript
+import collect from 'react-redux-collect'
+
+// props: { title: 'Kracked', length: '2:50' }
+const provideProps = collect([
+  [['tracks', 1], '...']
+])
+```
+
+If you have only one prop to connect, you can pass its arguments as parameters to collect.
+```javascript
+import collect from 'react-redux-collect'
+
+// props: { title: 'Kracked', length: '2:50' }
+const provideProps = collect(['tracks', 1], '...')
+```
+
+You can pass the entirety of state into props using the string `'*'`.
+```javascript
+import collect from 'rect-redux-collect'
+
+// props: {...state}
+const provideProps = collect('*')
+// NOTE:
+// If state['*'] is not undefined, collect will throw an error
 ```
