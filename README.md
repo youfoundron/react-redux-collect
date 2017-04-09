@@ -128,7 +128,7 @@ const provideProps = collect([
 ])
 ```
 
-If you have only one prop to connect, you can pass its arguments as parameters to collect.
+If you have only one prop to connect, you can pass its arguments as parameters to `collect`.
 ```javascript
 import collect from 'react-redux-collect'
 
