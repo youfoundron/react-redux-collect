@@ -35,13 +35,13 @@ const state = {
   artist: 'Dinosaur Jr.',
   tracks: [
     { title: 'Little Fury Things', length: '3:06' },
-    { title: 'Kracked', length: '2:50' }
-    { title: 'Sludgefeast', length: '5:17' }
-    { title: 'The Lung', length: '3:51' }
-    { title: 'Raisans', length: '3:50' }
-    { title: 'Tarpit', length: '4:36' }
-    { title: 'In a Jar', length: '3:28' }
-    { title: 'Lose', length: '3:11' }
+    { title: 'Kracked', length: '2:50' },
+    { title: 'Sludgefeast', length: '5:17' },
+    { title: 'The Lung', length: '3:51' },
+    { title: 'Raisans', length: '3:50' },
+    { title: 'Tarpit', length: '4:36' },
+    { title: 'In a Jar', length: '3:28' },
+    { title: 'Lose', length: '3:11' },
     { title: 'Poledo', length: '5:43' }
   ]
 }
@@ -81,7 +81,7 @@ const provideProps = collect([
   // access tracks, pass through selector, connect as 'numTracks' prop
   ['tracks', 'numTracks', (tracks, state) => tracks.length],
   // access openPlayer action, connect as 'openPlayer' prop
-  ['actions', 'openPlayer'],
+  [['actions', 'openPlayer']],
   // access playAlbum action, transform the result, connect as 'onClick' prop
   [['actions', 'playAlbum'], 'onClick', (playAlbum, props) => playAlbum.bind(props.id)]
 ])
