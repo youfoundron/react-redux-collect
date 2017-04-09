@@ -3,6 +3,13 @@
   "version": "0.0.0",
   "description": "Helpful function for connecting redux state and actions to React components.",
   "main": "lib/index.js",
+  "scripts": {
+    "build": "webpack",
+    "clean": "rimraf lib",
+    "prepublish": "npm run clean && npm run build",
+    "test": "mocha --compilers js:babel-register",
+    "test:watch": "npm run test -- --watch"
+  },
   "repository": "https://github.com/rongierlach/react-redux-collect.git",
   "keywords": [
     "react",
