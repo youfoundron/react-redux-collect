@@ -7,7 +7,7 @@ import AlbumDetail, { immutable as ImmutableAlbumDetail } from './components/Alb
 import store, { immutable as immutableStore } from './store'
 import Wrapper, { immutable as ImmutableWrapper } from './Wrapper'
 
-chai.use(chaiEnzume())
+chai.use(chaiEnzyme())
 
 const app = mount(
   <Wrapper>
