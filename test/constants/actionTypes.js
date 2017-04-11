@@ -5,6 +5,6 @@ const TYPES = [
 
 export default TYPES.reduce(
   (typesObj, type) => {
-    typesObj[type] = Symbol(type)
+    typesObj[type] = Symbol(`App/${type}`)
     return typesObj
   }, {})
