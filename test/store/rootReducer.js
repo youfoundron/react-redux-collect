@@ -2,12 +2,14 @@ import R from 'ramda'
 import types from '../constants/actionTypes'
 import initialState, { immutable as immutableInitialState } from './initialState'
 
-const makeReducer = helpers => (state, action) => {
+const makeReducer = (helpers, _state) => (state = _state, action) => {
   switch (action.type) {
     case (types.OPEN_PLAYER):
       return helpers.openPlayer(state)
     case (types.PLAY_ALBUM):
       return helpers.playAlbum(state, action.payload)
+    default:
+      return state
   }
 }
 
