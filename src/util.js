@@ -1,7 +1,7 @@
 import R from 'ramda'
 
 // take the first element of an array
-const first = R.take(1)
+const first = R.nth(0)
 
 // determine if the given path is indicating the wildcard
 const isWildcard = R.ifElse(
