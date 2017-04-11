@@ -14,7 +14,7 @@ const isWildcard = R.ifElse(
 const isActionPath = R.ifElse(
   Array.isArray,
   R.compose(R.equals('actions', first)),
-  R.false
+  R.always(false)
 )
 
 // determine if the given propName is the spread symbol
@@ -38,7 +38,7 @@ const getPropNameFromPath = R.ifElse(
 )
 
 // given a path, return a function to retrieve an actionCreator
-const getActionCreatorFactory = R.path(R.splice(1))
+const getActionCreatorFactory = R.path(R.slice(1))
 
 export {
   getValueFromPath,
