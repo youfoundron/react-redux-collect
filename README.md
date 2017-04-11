@@ -79,7 +79,7 @@ const provideProps = collect([
   // access state.tracks[0], connect as 'firstTrack' prop
   [['tracks', 0], 'firstTrack'],
   // access tracks, pass through selector, connect as 'numTracks' prop
-  ['tracks', 'numTracks', (tracks, state) => tracks.length],
+  ['tracks', 'numTracks', (tracks, state, props) => tracks.length],
   // access openPlayer action, connect as 'openPlayer' prop
   [['actions', 'openPlayer']],
   // access playAlbum action, transform the result, connect as 'onClick' prop
@@ -93,7 +93,7 @@ Is equivalent to:
 import { connect } from 'react-redux'
 import actionCreators from './actionCreators'
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state, props) => ({
   title: state.title,
   band: state.artist,
   firstTrack: state.tracks[0],
