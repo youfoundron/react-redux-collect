@@ -2,31 +2,30 @@ import R from 'ramda'
 import { connect } from 'react-redux'
 
 export default ({
-  getValueFromPath,
-  getPropNameFromPath,
-  getActionCreatorFactory,
+  isArray,
+  isSpread,
   isWildcard,
   isActionPath,
-  isSpread
+  getValueFromPath,
+  getPropNameFromPath,
+  getActionCreatorFactory
 }) => actionCreators => (...args) => {
+  // declare empty setters arrays
   const propSetters = []
   const actionSetters = []
 
-  // make args shallow
-  if (args.length > 1) {
-    args = [args]
-  }
-
-  for (let [
-    path,
-    propName = getPropNameFromPath(path),
-    transformer = R.identity
-  ] of args) {
+  // derive propArgs from shape of args
+  for (let propArgs of args.length ? args[0] : [args]) {
+    const [
+      path,
+      propName = getPropNameFromPath(path),
+      transformer = R.identity
+    ] = isArray(propArgs) ? propArgs : [propArgs]
     // handle wildcard path
     if (isWildcard(path)) {
       propSetters.push((state, props) => {
         const value = transformer(state, state, props)
-        return R.isWildcard(propName) ? { ...value } : { [propName]: value }
+        return isWildcard(propName) ? { ...value } : { [propName]: value }
       })
       continue
     }
@@ -49,8 +48,22 @@ export default ({
     })
   }
 
-  const mapStateToProps = R.converge(R.mergeAll, propSetters)
-  const mapDispatchToProps = R.converge(R.mergeAll, actionSetters)
+  const mapStateToProps = (state, props) => {
+    const result = R.mergeAll(
+      propSetters.map(propSetter =>
+        propSetter(state, props)
+      )
+    )
+    return result
+  }
+  const mapDispatchToProps = (dispatch, props) => {
+    const result = R.mergeAll(
+      actionSetters.map(actionSetter =>
+        actionSetter(dispatch, props)
+      )
+    )
+    return result
+  }
 
   return connect(mapStateToProps, mapDispatchToProps)
 }
