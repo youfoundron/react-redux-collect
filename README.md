@@ -138,7 +138,7 @@ const provideProps = collect(['tracks', 1], '...')
 
 You can pass the entirety of state into props using the string `'*'`.
 ```javascript
-import collect from 'rect-redux-collect'
+import collect from 'react-redux-collect'
 
 // props: {...state}
 const provideProps = collect('*')
