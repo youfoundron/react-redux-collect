@@ -1,11 +1,11 @@
 import React from 'react'
 import actionCreators from '../constants/actionCreators'
 import { createCollect } from '../../src'
-// import { createCollect as immutableCreateCollect } from '../../src/immutable'
+import { createCollect as immutableCreateCollect } from '../../src/immutable'
 import AlbumDetail from '../components/AlbumDetail'
 
 const collect = createCollect(actionCreators)
-// const immutableCollect = immutableCreateCollect(actionCreators)
+const immutableCollect = immutableCreateCollect(actionCreators)
 
 // collect-style prop arguments
 const propId = 'id'
@@ -15,7 +15,7 @@ const propFirstTrack = [['tracks', 0], 'firstTrack']
 const propNumTracks = [
   'tracks',
   'numTracks',
-  (tracks, state) => tracks.length
+  (tracks, state) => tracks.size || tracks.length
 ]
 const propActionOpenPlayer = [['actions', 'openPlayer']]
 const propActionOnClick = [
@@ -36,7 +36,7 @@ const propArgs = [
 
 // connected components
 const AlbumDetailContainer = collect(propArgs)(AlbumDetail)
-// const ImmutableAlbumDetailContainer = immutableCollect(props)(AlbumDetail)
+const ImmutableAlbumDetailContainer = immutableCollect(propArgs)(AlbumDetail)
 
 export default AlbumDetailContainer
-// export const immutable = ImmutableAlbumDetailContainer
+export const immutable = ImmutableAlbumDetailContainer
