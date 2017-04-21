@@ -35,8 +35,8 @@ const propArgs = [
 ]
 
 // connected components
-const AlbumDetailContainer = collect(propArgs)(AlbumDetail)
-const ImmutableAlbumDetailContainer = immutableCollect(propArgs)(AlbumDetail)
+const AlbumDetailContainer = collect(...propArgs)(AlbumDetail)
+const ImmutableAlbumDetailContainer = immutableCollect(...propArgs)(AlbumDetail)
 
 export default AlbumDetailContainer
 export const immutable = ImmutableAlbumDetailContainer
