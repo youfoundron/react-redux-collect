@@ -23,6 +23,12 @@ const isActionPath = R.ifElse(
   R.always(false)
 )
 
+// given an array of setters, and the same args, merge their results
+const mergeSetters = setters => (...args) => R.compose(
+  R.mergeAll,
+  R.map(setter => setter(...args))
+)(setters)
+
 // generate a ramda lens given a path
 const getLensFromPath = R.ifElse(
   isArray,
@@ -51,6 +57,7 @@ export {
   isSpread,
   isWildcard,
   isActionPath,
+  mergeSetters,
   getValueFromPath,
   getPropNameFromPath,
   getActionCreatorFactory
