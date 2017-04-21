@@ -12,7 +12,7 @@ chai.use(chaiEnzyme())
 
 const wrapper = mount(
   <Provider store={store}>
-    <AlbumDetailContainer />
+    <AlbumDetailContainer id={store.getState().id} />
   </Provider>
 )
 
