@@ -63,22 +63,16 @@ This code:
 import { createCollect } from 'react-redux-collect'
 import actionCreators from './actionCreators'
 
-// This is only necessary if you intend to connect actions as props.
-// Otherwise you can just use the default export.
 const collect = createCollect(actionCreators)
-
-// NOTE:
-// Ideally a created collect is declared in another file
-// and imported as needed throughout your application.
 
 const provideProps = collect(
   'id',
   ['title']
   ['artist', 'band'],
   [['tracks', 0], 'firstTrack'],
-  ['tracks', 'numTracks', (tracks, state, ownProps) => tracks.length],
+  ['tracks', 'numTracks', tracks => tracks.length],
   [['actions', 'openPlayer']],
-  [['actions', 'playAlbum'], 'onClick', (playAlbum, ownProps) => playAlbum.bind(null, ownProps.id)]
+  [['actions', 'playAlbum'], 'onClick', (action, {id}) => action.bind(null, id)]
 )
 ```
 Is equivalent to:
@@ -86,14 +80,14 @@ Is equivalent to:
 import { connect } from 'react-redux'
 import actionCreators from './actionCreators'
 
-const mapStateToProps = (state, props) => ({
+const mapStateToProps = (state, ownProps) => ({
   title: state.title,
   band: state.artist,
   firstTrack: state.tracks[0],
   numTracks: state.tracks.length
 })
 
-const mapDispatchToProps = (dispatch, props) => ({
+const mapDispatchToProps = (dispatch, ownProps) => ({
   openPlayer: (...args) =>
     dispatch(actionCreators.openPlayer(...args)),
   onClick: (...args) =>
@@ -110,6 +104,15 @@ const provideProps = connect(
 If your state uses <a href="https://facebook.github.io/immutable-js/">Immutable.js</a>, import with `react-redux-collect/immutable`.
 
 ## Tricks
+
+Creating `collect` is only necessary if you intend to connect actions as props.  
+Otherwise you can just use the default export.
+```javascript
+import collect from 'react-redux-collect'
+
+// Ideally a created collect is declared in another file
+// and imported as needed throughout your application.
+```
 
 You can spread a state value into props using the string `'...'`.
 ```javascript
