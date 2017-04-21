@@ -15,14 +15,14 @@ const makeReducer = (helpers, _state) => (state = _state, action) => {
 
 export default makeReducer({
   openPlayer: state =>
-    R.assocPath(['player', 'open'], true),
-  playAlbum: (albumId, state) =>
-    R.assocPath(['player', 'albumId'], albumId)
+    R.assocPath(['player', 'open'], true, state),
+  playAlbum: (state, albumId) =>
+    R.assocPath(['player', 'albumId'], albumId, state)
 }, initialState)
 
 export const immutable = makeReducer({
   openPlayer: state =>
     state.setIn(['player', 'open'], true),
-  playAlbum: (albumId, state) =>
+  playAlbum: (state, albumId) =>
     state.setIn(['player', 'albumId'], albumId)
 }, immutableInitialState)
