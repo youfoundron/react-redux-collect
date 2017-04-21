@@ -21,7 +21,7 @@ const propActionOpenPlayer = [['actions', 'openPlayer']]
 const propActionOnClick = [
   ['actions', 'playAlbum'],
   'onClick',
-  (playAlbum, props) => playAlbum.bind(props.id)
+  (playAlbum, ownProps) => playAlbum.bind(null, ownProps.id)
 ]
 
 const propArgs = [
