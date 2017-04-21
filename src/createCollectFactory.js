@@ -6,6 +6,7 @@ export default ({
   isSpread,
   isWildcard,
   isActionPath,
+  mergeSetters,
   getValueFromPath,
   getPropNameFromPath,
   getActionCreatorFactory
@@ -49,22 +50,7 @@ export default ({
     })
   }
 
-  const mapStateToProps = (state, props) => {
-    const result = R.mergeAll(
-      propSetters.map(propSetter =>
-        propSetter(state, props)
-      )
-    )
-    return result
-  }
-  const mapDispatchToProps = (dispatch, props) => {
-    const result = R.mergeAll(
-      actionSetters.map(actionSetter =>
-        actionSetter(dispatch, props)
-      )
-    )
-    return result
-  }
-
+  const mapStateToProps = mergeSetters(propSetters)
+  const mapDispatchToProps = mergeSetters(actionSetters)
   return connect(mapStateToProps, mapDispatchToProps)
 }
