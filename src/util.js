@@ -50,7 +50,10 @@ const getPropNameFromPath = R.ifElse(
 )
 
 // given a path, return a function to retrieve an actionCreator
-const getActionCreatorFactory = R.compose(R.path, R.slice(1, Infinity))
+const getActionCreatorFactory = R.compose(
+  R.path,
+  R.slice(1, Infinity)
+)
 
 export {
   isArray,
