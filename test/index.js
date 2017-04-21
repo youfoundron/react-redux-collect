@@ -83,17 +83,17 @@ describe('react-redux-collect', () => {
       expect(connectedComponent).to.have.prop('numTracks').equal(store.getState().tracks.length)
     })
 
-    // it('should support <path> for actions', () => {
-    //   expect(connectedComponent).to.have.prop('openPlayer').be.a('function')
-    //   connectedComponent.node.props.openPlayer()
-    //   expect(store.getState().player.open).to.be.true
-    // })
+    it('should support <path> for actions', () => {
+      expect(connectedComponent).to.have.prop('openPlayer').be.a('function')
+      connectedComponent.node.props.openPlayer()
+      expect(store.getState().player.open).to.be.true
+    })
 
-    // it('should support <transformer> for actions', () => {
-    //   expect(connectedComponent).to.have.prop('onClick').be.a('function')
-    //   connectedComponent.node.props.onClick()
-    //   expect(store.getState().player.albumId).to.equal(connectedComponent.node.props.id)
-    // })
+    it('should support <transformer> for actions', () => {
+      expect(connectedComponent).to.have.prop('onClick').be.a('function')
+      connectedComponent.node.props.onClick()
+      expect(store.getState().player.albumId).to.equal(connectedComponent.node.props.id)
+    })
   })
 })
 
