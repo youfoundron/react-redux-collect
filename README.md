@@ -1,4 +1,6 @@
 # React Redux Collect
+[![Build Status](https://travis-ci.org/rongierlach/react-redux-collect.svg?branch=master)](https://travis-ci.org/rongierlach/react-redux-collect) [![Dependency Status](https://david-dm.org/rongierlach/react-redux-collect.svg)](https://david-dm.org/rongierlach/react-redux-collect) [![devDependency Status](https://david-dm.org/rongierlach/react-redux-collect/dev-status.svg)](https://david-dm.org/rongierlach/react-redux-collect#info=devDependencies) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)  
+
 This is the consequence of some feedback and meditation on [react-redux-connect-helpers](https://github.com/rongierlach/react-redux-connect-helpers).  
 Chiefly, the resulting nested mess of connectors after composition:
 
