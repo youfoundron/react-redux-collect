@@ -1,16 +1,17 @@
 import R from 'ramda'
 import { connect } from 'react-redux'
 
-export default ({
+import {
   isArray,
   isSpread,
   isWildcard,
   isActionPath,
   mergeSetters,
-  getValueFromPath,
   getPropNameFromPath,
   getActionCreatorFactory
-}) => actionCreators => (...args) => {
+} from './util'
+
+export default getValueFromPath => actionCreators => (...args) => {
   // declare empty setters arrays
   const propSetters = []
   const actionSetters = []
