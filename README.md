@@ -16,7 +16,7 @@ Collect some values in state and connect them as props. :+1:
 ```javascript
 import collect from 'react-redux-collect'
 
-const provideProps = collect(<path>, <name>, <transformer>)
+const provideProps = collect([<path>, <name>, <transformer>], ...)
 ```  
 
 The arguments to connect a value in state are ordered as follows:
@@ -69,7 +69,7 @@ const collect = createCollect(actionCreators)
 // Ideally a created collect is declared in another file
 // and imported as needed throughout your application.
 
-const provideProps = collect([
+const provideProps = collect(
   // access state.id, connect as 'id' prop
   'id',
   // same as above, access state.title, connect as 'title' prop
@@ -84,9 +84,7 @@ const provideProps = collect([
   [['actions', 'openPlayer']],
   // access playAlbum action, transform the result, connect as 'onClick' prop
   [['actions', 'playAlbum'], 'onClick', (playAlbum, ownProps) => playAlbum.bind(null, ownProps.id)]
-])
-// NOTE:
-// If state.actions is not undefined, collect will throw an error
+)
 ```
 Is equivalent to:
 ```javascript
@@ -123,17 +121,7 @@ You can spread a state value into props using the string `'...'`.
 import collect from 'react-redux-collect'
 
 // props: { title: 'Kracked', length: '2:50' }
-const provideProps = collect([
-  [['tracks', 1], '...']
-])
-```
-
-If you have only one prop to connect, you can pass its arguments as parameters to `collect`.
-```javascript
-import collect from 'react-redux-collect'
-
-// props: { title: 'Kracked', length: '2:50' }
-const provideProps = collect(['tracks', 1], '...')
+const provideProps = collect([['tracks', 1], '...'])
 ```
 
 You can pass the entirety of state into props using the string `'*'`.
