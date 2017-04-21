@@ -72,19 +72,12 @@ const collect = createCollect(actionCreators)
 // and imported as needed throughout your application.
 
 const provideProps = collect(
-  // access state.id, connect as 'id' prop
   'id',
-  // same as above, access state.title, connect as 'title' prop
   ['title']
-  // access state.artist, connect as 'band' prop
   ['artist', 'band'],
-  // access state.tracks[0], connect as 'firstTrack' prop
   [['tracks', 0], 'firstTrack'],
-  // access tracks, pass through selector, connect as 'numTracks' prop
   ['tracks', 'numTracks', (tracks, state, ownProps) => tracks.length],
-  // access openPlayer action, connect as 'openPlayer' prop
   [['actions', 'openPlayer']],
-  // access playAlbum action, transform the result, connect as 'onClick' prop
   [['actions', 'playAlbum'], 'onClick', (playAlbum, ownProps) => playAlbum.bind(null, ownProps.id)]
 )
 ```
