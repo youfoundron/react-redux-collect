@@ -17,7 +17,7 @@ export default getValueFromPath => actionCreators => (...args) => {
   const actionSetters = []
 
   // derive propArgs from shape of args
-  for (let propArgs of args.length ? args[0] : [args]) {
+  for (let propArgs of args) {
     const [
       path,
       propName = getPropNameFromPath(path),
