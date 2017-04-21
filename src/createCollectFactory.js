@@ -21,10 +21,11 @@ export default ({
       propName = getPropNameFromPath(path),
       transformer = R.identity
     ] = isArray(propArgs) ? propArgs : [propArgs]
+
     // handle wildcard path
     if (isWildcard(path)) {
-      propSetters.push((state, props) => {
-        const value = transformer(state, state, props)
+      propSetters.push((state, ownProps) => {
+        const value = transformer(state, state, ownProps)
         return isWildcard(propName) ? { ...value } : { [propName]: value }
       })
       continue
@@ -32,17 +33,17 @@ export default ({
 
     // handle action path
     if (isActionPath(path)) {
-      actionSetters.push((dispatch, props) => {
-        const actionCreator = getActionCreatorFactory(path)(actionCreators)
-        const value = R.compose(dispatch, transformer(actionCreator, props))
+      const actionCreator = getActionCreatorFactory(path)(actionCreators)
+      actionSetters.push((dispatch, ownProps) => {
+        const value = R.compose(dispatch, transformer(actionCreator, ownProps))
         return { [propName]: value }
       })
       continue
     }
 
     // handle regular prop
-    propSetters.push((state, props) => {
-      const value = transformer(getValueFromPath(path, state), state, props)
+    propSetters.push((state, ownProps) => {
+      const value = transformer(getValueFromPath(path, state), state, ownProps)
       // spread the value into state or return a named prop
       return isSpread(propName) ? { ...value } : { [propName]: value }
     })
