@@ -79,11 +79,11 @@ const provideProps = collect([
   // access state.tracks[0], connect as 'firstTrack' prop
   [['tracks', 0], 'firstTrack'],
   // access tracks, pass through selector, connect as 'numTracks' prop
-  ['tracks', 'numTracks', (tracks, state, props) => tracks.length],
+  ['tracks', 'numTracks', (tracks, state, ownProps) => tracks.length],
   // access openPlayer action, connect as 'openPlayer' prop
   [['actions', 'openPlayer']],
   // access playAlbum action, transform the result, connect as 'onClick' prop
-  [['actions', 'playAlbum'], 'onClick', (playAlbum, props) => playAlbum.bind(props.id)]
+  [['actions', 'playAlbum'], 'onClick', (playAlbum, ownProps) => playAlbum.bind(null, ownProps.id)]
 ])
 // NOTE:
 // If state.actions is not undefined, collect will throw an error
