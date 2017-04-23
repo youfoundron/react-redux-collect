@@ -33,7 +33,7 @@ const immutableWrapper = mount(
 )
 
 const _AlbumDetail = wrapper.find(AlbumDetail).first()
-const immutableConnectedComponent = immutableWrapper.find(AlbumDetail).first()
+const _iAlbumDetail = immutableWrapper.find(AlbumDetail).first()
 
 describe('jsDOM', () => {
   describe('#window', () => {
@@ -122,35 +122,35 @@ describe('react-redux-collect/immutable', () => {
 
   describe('#syntax', () => {
     it('should support <path> as a string', () => {
-      expect(immutableConnectedComponent).to.have.prop('id').equal(immutableStore.getState().get('id'))
+      expect(_iAlbumDetail).to.have.prop('id').equal(immutableStore.getState().get('id'))
     })
 
     it('should support <path> as a single-item array', () => {
-      expect(immutableConnectedComponent).to.have.prop('title').equal(immutableStore.getState().get('title'))
+      expect(_iAlbumDetail).to.have.prop('title').equal(immutableStore.getState().get('title'))
     })
 
     it('should support <name>', () => {
-      expect(immutableConnectedComponent).to.have.prop('band').equal(immutableStore.getState().get('artist'))
+      expect(_iAlbumDetail).to.have.prop('band').equal(immutableStore.getState().get('artist'))
     })
 
     it('should support <path> as a multiple-item array', () => {
-      expect(immutableConnectedComponent).to.have.prop('firstTrack').equal(immutableStore.getState().getIn(['tracks', 0]))
+      expect(_iAlbumDetail).to.have.prop('firstTrack').equal(immutableStore.getState().getIn(['tracks', 0]))
     })
 
     it('should support <transformer> for state values', () => {
-      expect(immutableConnectedComponent).to.have.prop('numTracks').equal(immutableStore.getState().get('tracks').size)
+      expect(_iAlbumDetail).to.have.prop('numTracks').equal(immutableStore.getState().get('tracks').size)
     })
 
     it('should support <path> for actions', () => {
-      expect(immutableConnectedComponent).to.have.prop('openPlayer').be.a('function')
-      immutableConnectedComponent.node.props.openPlayer()
+      expect(_iAlbumDetail).to.have.prop('openPlayer').be.a('function')
+      _iAlbumDetail.node.props.openPlayer()
       expect(immutableStore.getState().getIn(['player', 'open'])).to.be.true
     })
 
     it('should support <transformer> for actions', () => {
-      expect(immutableConnectedComponent).to.have.prop('onClick').be.a('function')
-      immutableConnectedComponent.node.props.onClick()
-      expect(immutableStore.getState().getIn(['player', 'albumId'])).to.equal(immutableConnectedComponent.node.props.id)
+      expect(_iAlbumDetail).to.have.prop('onClick').be.a('function')
+      _iAlbumDetail.node.props.onClick()
+      expect(immutableStore.getState().getIn(['player', 'albumId'])).to.equal(_iAlbumDetail.node.props.id)
     })
   })
 })
