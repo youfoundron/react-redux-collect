@@ -32,7 +32,7 @@ const immutableWrapper = mount(
   </Provider>
 )
 
-const connectedComponent = wrapper.find(AlbumDetail).first()
+const _AlbumDetail = wrapper.find(AlbumDetail).first()
 const immutableConnectedComponent = immutableWrapper.find(AlbumDetail).first()
 
 describe('jsDOM', () => {
@@ -61,7 +61,7 @@ describe('jsDOM', () => {
 
 describe('react-redux-collect', () => {
   it('should connect expected props', () => {
-    expect(connectedComponent).to.have.props([
+    expect(_AlbumDetail).to.have.props([
       'id',
       'title',
       'band',
@@ -74,42 +74,42 @@ describe('react-redux-collect', () => {
 
   describe('#syntax', () => {
     it('should support <path> as a string', () => {
-      expect(connectedComponent).to.have.prop('id').equal(store.getState().id)
+      expect(_AlbumDetail).to.have.prop('id').equal(store.getState().id)
     })
 
     it('should support <path> as a single-item array', () => {
-      expect(connectedComponent).to.have.prop('title').equal(store.getState().title)
+      expect(_AlbumDetail).to.have.prop('title').equal(store.getState().title)
     })
 
     it('should support <name>', () => {
-      expect(connectedComponent).to.have.prop('band').equal(store.getState().artist)
+      expect(_AlbumDetail).to.have.prop('band').equal(store.getState().artist)
     })
 
     it('should support <path> as a multiple-item array', () => {
-      expect(connectedComponent).to.have.prop('firstTrack').equal(store.getState().tracks[0])
+      expect(_AlbumDetail).to.have.prop('firstTrack').equal(store.getState().tracks[0])
     })
 
     it('should support <transformer> for state values', () => {
-      expect(connectedComponent).to.have.prop('numTracks').equal(store.getState().tracks.length)
+      expect(_AlbumDetail).to.have.prop('numTracks').equal(store.getState().tracks.length)
     })
 
     it('should support <path> for actions', () => {
-      expect(connectedComponent).to.have.prop('openPlayer').be.a('function')
-      connectedComponent.node.props.openPlayer()
+      expect(_AlbumDetail).to.have.prop('openPlayer').be.a('function')
+      _AlbumDetail.node.props.openPlayer()
       expect(store.getState().player.open).to.be.true
     })
 
     it('should support <transformer> for actions', () => {
-      expect(connectedComponent).to.have.prop('onClick').be.a('function')
-      connectedComponent.node.props.onClick()
-      expect(store.getState().player.albumId).to.equal(connectedComponent.node.props.id)
+      expect(_AlbumDetail).to.have.prop('onClick').be.a('function')
+      _AlbumDetail.node.props.onClick()
+      expect(store.getState().player.albumId).to.equal(_AlbumDetail.node.props.id)
     })
   })
 })
 
 describe('react-redux-collect/immutable', () => {
   it('should connect expected props', () => {
-    expect(connectedComponent).to.have.props([
+    expect(_AlbumDetail).to.have.props([
       'id',
       'title',
       'band',
