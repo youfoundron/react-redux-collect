@@ -34,9 +34,9 @@ const immutableWrapper = mount(
 )
 
 const _AlbumDetail = wrapper.find(AlbumDetail).first()
-const _FirstTrack = wrapper.find(FirstTrack).first()
+const _FirstTrack = wrapper.find(TrackDetail).first()
 const _iAlbumDetail = immutableWrapper.find(AlbumDetail).first()
-const _iFirstTrack = wrapper.find(ImmutableFirstTrack).first()
+const _iFirstTrack = wrapper.find(TrackDetail).first()
 
 describe('jsDOM', () => {
   describe('#window', () => {
@@ -132,8 +132,8 @@ describe('react-redux-collect/immutable', () => {
   describe('#syntax', () => {
     it('should support <path> as a selector function', () => {
       expect(_iFirstTrack).to.have.props(['title', 'length'])
-      expect(_iFirstTrack).to.have.prop('title').equal(selectors.selectFirstTrack(store.getState()).get('title'))
-      expect(_iFirstTrack).to.have.prop('length').equal(selectors.selectFirstTrack(store.getState()).get('length'))
+      expect(_iFirstTrack).to.have.prop('title').equal(selectors.immutableSelectFirstTrack(immutableStore.getState()).get('title'))
+      expect(_iFirstTrack).to.have.prop('length').equal(selectors.immutableSelectFirstTrack(immutableStore.getState()).get('length'))
     })
 
     it('should support <path> as a string', () => {
