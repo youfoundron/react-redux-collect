@@ -114,6 +114,16 @@ import collect from 'react-redux-collect'
 // and imported as needed throughout your application.
 ```
 
+You can pass selector functions instead of path arrays.
+```javascript
+import collect from 'react-redux-collect'
+
+const selectFirstTrack = state => state.tracks[0]
+
+// props: { firstTrack: { title: 'Little Fury Things', length: '3:06' } }
+const provideProps = collect([selectFirstTrack, 'firstTrack'])
+```
+
 You can spread a state value into props using the string `'...'`.
 ```javascript
 import collect from 'react-redux-collect'
