@@ -11,6 +11,7 @@ import TrackDetail from './components/TrackDetail'
 import AlbumDetailContainer, { immutable as ImmutableAlbumDetailContainer } from './containers/AlbumDetailContainer'
 import FirstTrack, { immutable as ImmutableFirstTrack } from './containers/FirstTrack'
 import store, { immutable as immutableStore } from './store'
+import * as selectors from './constants/selectors'
 
 chai.use(chaiEnzyme())
 
@@ -33,7 +34,9 @@ const immutableWrapper = mount(
 )
 
 const _AlbumDetail = wrapper.find(AlbumDetail).first()
+const _FirstTrack = wrapper.find(FirstTrack).first()
 const _iAlbumDetail = immutableWrapper.find(AlbumDetail).first()
+const _iFirstTrack = wrapper.find(ImmutableFirstTrack).first()
 
 describe('jsDOM', () => {
   describe('#window', () => {
@@ -73,6 +76,12 @@ describe('react-redux-collect', () => {
   })
 
   describe('#syntax', () => {
+    it('should support <path> as a selector function', () => {
+      expect(_FirstTrack).to.have.props(['title', 'length'])
+      expect(_FirstTrack).to.have.prop('title').equal(selectors.selectFirstTrack(store.getState()).title)
+      expect(_FirstTrack).to.have.prop('length').equal(selectors.selectFirstTrack(store.getState()).length)
+    })
+
     it('should support <path> as a string', () => {
       expect(_AlbumDetail).to.have.prop('id').equal(store.getState().id)
     })
@@ -121,6 +130,12 @@ describe('react-redux-collect/immutable', () => {
   })
 
   describe('#syntax', () => {
+    it('should support <path> as a selector function', () => {
+      expect(_iFirstTrack).to.have.props(['title', 'length'])
+      expect(_iFirstTrack).to.have.prop('title').equal(selectors.selectFirstTrack(store.getState()).get('title'))
+      expect(_iFirstTrack).to.have.prop('length').equal(selectors.selectFirstTrack(store.getState()).get('length'))
+    })
+
     it('should support <path> as a string', () => {
       expect(_iAlbumDetail).to.have.prop('id').equal(immutableStore.getState().get('id'))
     })
