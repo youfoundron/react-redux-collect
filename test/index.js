@@ -7,20 +7,28 @@ import chaiEnzyme from 'chai-enzyme'
 import { Provider } from 'react-redux'
 
 import AlbumDetail from './components/AlbumDetail'
+import TrackDetail from './components/TrackDetail'
 import AlbumDetailContainer, { immutable as ImmutableAlbumDetailContainer } from './containers/AlbumDetailContainer'
+import FirstTrack, { immutable as ImmutableFirstTrack } from './containers/FirstTrack'
 import store, { immutable as immutableStore } from './store'
 
 chai.use(chaiEnzyme())
 
 const wrapper = mount(
   <Provider store={store}>
-    <AlbumDetailContainer id={store.getState().id} />
+    <div>
+      <AlbumDetailContainer id={store.getState().id} />
+      <FirstTrack />
+    </div>
   </Provider>
 )
 
 const immutableWrapper = mount(
   <Provider store={immutableStore}>
-    <ImmutableAlbumDetailContainer id={immutableStore.getState().get('id')} />
+    <div>
+      <ImmutableAlbumDetailContainer id={immutableStore.getState().get('id')} />
+      <ImmutableFirstTrack />
+    </div>
   </Provider>
 )
 
