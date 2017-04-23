@@ -5,8 +5,8 @@ import immutableCollect from '../../src/immutable'
 import TrackDetail from '../components/TrackDetail'
 import {
   selectFirstTrack,
-  immutableSelectFirstTrackselect
-} from '../containers/selectors'
+  immutableSelectFirstTrack
+} from '../constants/selectors'
 
 const FirstTrack = collect(
   [selectFirstTrack, '...']
