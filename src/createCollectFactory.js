@@ -24,6 +24,13 @@ export default getValueFromPath => actionCreators => (...args) => {
       transformer = R.identity
     ] = isArray(propArgs) ? propArgs : [propArgs]
 
+    // handle errors
+    if (
+      typeof path === 'function' &&
+      typeof propName !== 'string' &&
+      propName.length
+    ) throw TypeError('Property name must be an unempty string when using a selector function instead of a path array')
+
     // handle wildcard path
     if (isWildcard(path)) {
       propSetters.push((state, ownProps) => {
@@ -44,8 +51,12 @@ export default getValueFromPath => actionCreators => (...args) => {
     }
 
     // handle regular prop
+    const getValue = typeof path === 'function'
+      ? (state, ownProps) => transformer(path(state), state, ownProps)
+      : (state, ownProps) => transformer(getValueFromPath(path, state), state, ownProps)
+
     propSetters.push((state, ownProps) => {
-      const value = transformer(getValueFromPath(path, state), state, ownProps)
+      const value = getValue(state, ownProps)
       // spread the value into state or return a named prop
       return isSpread(propName) ? { ...value } : { [propName]: value }
     })
