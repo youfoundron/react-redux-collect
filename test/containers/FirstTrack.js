@@ -1,5 +1,3 @@
-import React from 'react'
-
 import collect from '../../src'
 import immutableCollect from '../../src/immutable'
 import TrackDetail from '../components/TrackDetail'

@@ -1,4 +1,3 @@
-import React from 'react'
 import actionCreators from '../constants/actionCreators'
 import { createCollect } from '../../src'
 import { createCollect as immutableCreateCollect } from '../../src/immutable'
