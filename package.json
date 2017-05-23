@@ -28,7 +28,12 @@
   "author": "https://github.com/rongierlach",
   "license": "MIT",
   "standard": {
-    "parser": "babel-eslint"
+    "parser": "babel-eslint",
+    "globals": [
+      "it",
+      "expect",
+      "describe"
+    ]
   },
   "devDependencies": {
     "babel-eslint": "^7.2.1",
