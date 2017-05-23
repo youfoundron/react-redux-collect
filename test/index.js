@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 import React from 'react'
 import { mount } from 'enzyme'
 import chai, { expect } from 'chai'
