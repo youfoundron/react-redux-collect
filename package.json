@@ -8,7 +8,9 @@
     "clean": "rimraf lib",
     "prepublish": "npm run clean && npm run build",
     "test": "mocha --compilers js:babel-register",
-    "test:watch": "npm run test -- --watch"
+    "test:watch": "npm run test -- --watch",
+    "coverage": "istanbul cover _mocha -- --compilers js:babel-register",
+    "coveralls": "cat ./coverage/lcov.info | coveralls"
   },
   "repository": "https://github.com/rongierlach/react-redux-collect.git",
   "keywords": [
@@ -39,8 +41,10 @@
     "babel-runtime": "^6.23.0",
     "chai": "^3.5.0",
     "chai-enzyme": "^0.6.1",
+    "coveralls": "^2.13.1",
     "enzyme": "^2.8.0",
     "immutable": "^3.8.1",
+    "istanbul": "1.0.0-alpha.2",
     "jsdom": "^9.12.0",
     "mocha": "^3.2.0",
     "ramda": "^0.23.0",
