@@ -2,4 +2,6 @@ language: node_js
 node_js: node
 cache: yarn
 script:
-  - npm test
+  - npm run coverage
+after_success:
+  - npm run coveralls
