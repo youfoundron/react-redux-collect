@@ -23,8 +23,7 @@ const provideProps = collect([<path>, <name>, <transformer>], ...)
 
 The arguments to connect a value in state are ordered as follows:
 * `path`: An array or string denoting the key(s) to access the value in state.
-* `name` (optional): The key of the resulting prop, defaults to.
- the last key in `path`.
+* `name` (optional): The key of the resulting prop, defaults to the last key in `path`.
 * `transformer` (optional): Function to transform the accessed value or action.  
 For values, will pass the value as the first param and state as the second.  
 For actions, will pass the action as the first param and props as the second.
