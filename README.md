@@ -80,6 +80,7 @@ import { connect } from 'react-redux'
 import actionCreators from './actionCreators'
 
 const mapStateToProps = (state, ownProps) => ({
+  id: state.id,
   title: state.title,
   band: state.artist,
   firstTrack: state.tracks[0],
@@ -90,7 +91,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   openPlayer: (...args) =>
     dispatch(actionCreators.openPlayer(...args)),
   onClick: (...args) =>
-    dispatch(actionCreators.playAlbum(props.id, ...args))
+    dispatch(actionCreators.playAlbum(ownProps.id, ...args))
 })
 
 const provideProps = connect(
