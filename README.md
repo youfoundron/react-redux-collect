@@ -12,7 +12,7 @@ This function implements the same core functionality as react-redux-connect-help
 Collect some values in state and connect them as props. :+1:
 
 ## Installation
-`$ npm install react-redux-connect-helpers`
+`$ npm install react-redux-collect`
 
 ## Usage
 ```javascript
